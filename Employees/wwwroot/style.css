@@ -1,0 +1,73 @@
+/* Стили для основного контейнера */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Стили для блока с границей */
+  .blockBorder {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Стили для таблицы */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Стили для заголовков таблицы */
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+
+  #balanceAmount {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  
+  .table2 {
+    margin-bottom: 40px;
+  }
+  
+  
+  .table3 {
+    margin-bottom: 40px;
+  }
+  button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 50px;
+    margin: 25px;
+    transition: 0.5s;
+    color: white;
+    font-size: 20px;
+    background-color: #4caf50;
+    border-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+}
+
+button:hover {
+    box-shadow: 0 0 5px 1px #65cc68;
+    background-color: #66c069;
+}  
