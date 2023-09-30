@@ -9,11 +9,16 @@ namespace Employees.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        private readonly DataBaseContext db;
+
+        public EmployeesController(DataBaseContext dbContext)
+        {
+            db = dbContext;
+        }
+
         [HttpPost]
         public IActionResult Add(People employee)
         {
-            using (var db = new DataBaseContext())
-            {
                 var AddInTable = new Employee
                 {
                     ManagerId = employee.ManagerId,
@@ -29,15 +34,12 @@ namespace Employees.Controllers
                 db.Employee.Add(AddInTable);
                 db.SaveChanges();
                 return Ok();
-            }
         }
 
         [HttpPatch]
         public IActionResult Change(int id, bool changeManagerId, People peoplechange)
         {
-            using (var db = new DataBaseContext())
-            {
-                var employeeToUpdate = db.Employee.Find(id);
+            var employeeToUpdate = db.Employee.Find(id);
 
                 if (peoplechange.ManagerId != null)
                 {
@@ -76,15 +78,12 @@ namespace Employees.Controllers
 
                 db.SaveChanges();
                 return Ok();
-            }
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            using (var db = new DataBaseContext())
-            {
-                var entityToDelete = db.Employee.FirstOrDefault(x => x.Id == id);
+            var entityToDelete = db.Employee.FirstOrDefault(x => x.Id == id);
                 if (entityToDelete.ManagerId == 0)
                 {
                     var personsToUpdate = db.Employee.Where(x => x.ManagerId == entityToDelete.Id).ToList();
@@ -96,15 +95,12 @@ namespace Employees.Controllers
                 db.Employee.Remove(entityToDelete);
                 db.SaveChanges();
                 return Ok();
-            }
         }
 
         [HttpGet]
         public IActionResult View(People find)
         {
-            using (var db = new DataBaseContext())
-            {
-                var query = db.Employee.AsQueryable();
+            var query = db.Employee.AsQueryable();
 
                 if (find.Name != null)
                     query = query.Where(x => x.Name == find.Name);
@@ -129,7 +125,6 @@ namespace Employees.Controllers
 
                 var result = query.ToList();
                 return Ok(result);
-            }
         }
     }
 }

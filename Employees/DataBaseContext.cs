@@ -5,6 +5,10 @@ namespace Employees
 {
     public class DataBaseContext : DbContext
     {
+        public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
+        {
+        }
+
         private static readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.AddConsole();
