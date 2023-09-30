@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             department_id: department_id
         };
 
-        fetch('https://localhost:7208/add', {
+        fetch('https://localhost:5001/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

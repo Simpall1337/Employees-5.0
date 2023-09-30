@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             department_id: department_id
         };
 
-        fetch('https://localhost:7208/change', {
+        fetch('https://localhost:5001/change', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

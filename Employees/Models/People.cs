@@ -12,6 +12,6 @@ namespace Employees.Models
         public string? Education { get; set; }
         public string? Position { get; set; }
         public int? Salary { get; set; }
-        public int? Department_id { get; set; }
+        public int? DepartmentId { get; set; }
     }
 }

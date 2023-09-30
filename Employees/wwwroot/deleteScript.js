@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         var id = document.getElementById('id').value;
 
-        fetch('https://localhost:7208/delete', {
+        fetch(`https://localhost:5001/employee?id=${id}`, {
             method: 'Delete',
             headers: {
                 'Content-Type': 'application/json'

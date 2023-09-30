@@ -9,7 +9,6 @@ namespace Employees
         {
             builder.AddConsole();
         });
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -18,19 +17,13 @@ namespace Employees
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Employee>().Property(x => x.Birthday).HasColumnType("smalldatetime");
-            modelBuilder.Entity<Employee>().HasKey(x => x.Pk_employee_id);
-            modelBuilder.Entity<Department>().HasKey(x => x.Department_id);
-            modelBuilder.Entity<Employee>().Property(x => x.Pk_employee_id).UseIdentityColumn();
-            modelBuilder.Entity<Department>().Property(x => x.Department_id).UseIdentityColumn();
+            modelBuilder.Entity<Employee>().HasKey(x => x.Id);
+            modelBuilder.Entity<Department>().HasKey(x => x.DepartmentId);
+            modelBuilder.Entity<Employee>().Property(x => x.Id).UseIdentityColumn();
+            modelBuilder.Entity<Department>().Property(x => x.DepartmentId).UseIdentityColumn();
         }
-
         public DbSet<Department> Department { get; set; }
         public DbSet<Employee> Employee { get; set; }
-
-
-
-
     }
 }

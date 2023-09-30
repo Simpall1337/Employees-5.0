@@ -5,17 +5,15 @@ using System.Linq;
 
 namespace Employees.Controllers
 {
-    //[Route("api/[controller]")]
+    [Route("employee")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
         [HttpPost]
-        [Route("add")]
         public IActionResult Add(People employee)
         {
             using (var db = new DataBaseContext())
             {
-
                 var AddInTable = new Employee
                 {
                     ManagerId = employee.ManagerId,
@@ -26,29 +24,24 @@ namespace Employees.Controllers
                     Education = employee.Education,
                     Position = employee.Position,
                     Salary = employee.Salary,
-                    Department_id = employee.Department_id,
-
+                    DepartmentId = employee.DepartmentId,
                 };
                 db.Employee.Add(AddInTable);
                 db.SaveChanges();
-
                 return Ok();
-
             }
         }
 
         [HttpPatch]
-        [Route("change")]
         public IActionResult Change(int id, bool changeManagerId, People peoplechange)
         {
             using (var db = new DataBaseContext())
             {
-
                 var employeeToUpdate = db.Employee.Find(id);
 
                 if (peoplechange.ManagerId != null)
                 {
-                    var personsToUpdate = db.Employee.Where(x => x.ManagerId == employeeToUpdate.Pk_employee_id).ToList();
+                    var personsToUpdate = db.Employee.Where(x => x.ManagerId == employeeToUpdate.Id).ToList();
                     foreach (var item in personsToUpdate)
                     {
                         item.ManagerId = null;
@@ -81,24 +74,20 @@ namespace Employees.Controllers
                 if (employeeToUpdate.Salary != peoplechange.Salary && peoplechange.Salary != null)
                     employeeToUpdate.Salary = peoplechange.Salary;
 
-                //if (employeeToUpdate.Department_id != peoplechange.Department_id && peoplechange.Department_id != null)
-                //    employeeToUpdate.Department_id = peoplechange.Department_id;
-
                 db.SaveChanges();
                 return Ok();
             }
         }
 
         [HttpDelete]
-        [Route("delete")]
         public IActionResult Delete(int id)
         {
             using (var db = new DataBaseContext())
             {
-                var entityToDelete = db.Employee.FirstOrDefault(x => x.Pk_employee_id == id);
+                var entityToDelete = db.Employee.FirstOrDefault(x => x.Id == id);
                 if (entityToDelete.ManagerId == 0)
                 {
-                    var personsToUpdate = db.Employee.Where(x => x.ManagerId == entityToDelete.Pk_employee_id).ToList();
+                    var personsToUpdate = db.Employee.Where(x => x.ManagerId == entityToDelete.Id).ToList();
                     foreach (var item in personsToUpdate)
                     {
                         item.ManagerId = null;
@@ -110,8 +99,7 @@ namespace Employees.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("view")]
+        [HttpGet]
         public IActionResult View(People find)
         {
             using (var db = new DataBaseContext())
@@ -141,10 +129,7 @@ namespace Employees.Controllers
 
                 var result = query.ToList();
                 return Ok(result);
-
             }
         }
-
-
     }
 }
