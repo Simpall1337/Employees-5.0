@@ -76,7 +76,10 @@ namespace Employees.Controllers
                 if (employeeToUpdate.Salary != peoplechange.Salary && peoplechange.Salary != null)
                     employeeToUpdate.Salary = peoplechange.Salary;
 
-                db.SaveChanges();
+                if (employeeToUpdate.DepartmentId != peoplechange.DepartmentId && peoplechange.DepartmentId != null)
+                    employeeToUpdate.DepartmentId = peoplechange.DepartmentId;
+
+            db.SaveChanges();
                 return Ok();
         }
 
@@ -98,11 +101,17 @@ namespace Employees.Controllers
         }
 
         [HttpGet]
-        public IActionResult View(People find)
+        public IActionResult View([FromQuery] People find,int? id)
         {
             var query = db.Employee.AsQueryable();
 
-                if (find.Name != null)
+            //if (id != null)
+            //    query = query.Where(x => x.Id == id);
+
+            if (find.ManagerId != null)
+                query = query.Where(x => x.ManagerId == find.ManagerId);
+
+            if (find.Name != null)
                     query = query.Where(x => x.Name == find.Name);
 
                 if (find.Surname != null)

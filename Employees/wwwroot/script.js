@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = "delete.html";
     });
     button4.addEventListener('click', function() {
-        window.location.href = "find.html";
+        window.location.href = "view.html";
       });
     
   });

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Змінна даних</title>
-    <script src="changeScript.js"></script>
+    <title>Пошук співробітника</title>
+    <script src="viewScript.js"></script>
     <link rel="stylesheet" type="text/css" href="stl.css">
 </head>
 <div class="login-container">
 <body>
     
-    <form id="changeForm">
-        <input type="text" id="id" name="id" required placeholder="Id робітника"><br><br>
+    <form id="viewForm">
+        <input type="text" id="id" name="id" placeholder="Id робітника"><br><br>
         <input type="text" id="ManagerId" name="ManagerId" placeholder="Id керівника"><br><br>
         <input type="text" id="Name" name="Name" placeholder="Прізвище"><br><br>
         <input type="text" id="Surname" name="Surname"placeholder="Імя"><br><br>
@@ -19,9 +19,7 @@
         <input type="text" id="Position" name="Position"placeholder="Посада"><br><br>
         <input type="text" id="Salary" name="Salary"placeholder="Оклад"><br><br>
         <input type="text" id="Department_id" name="Department_id"placeholder="Департамент"><br><br>
-        <div id="text">Видалити керівника?<br><br>
-        <input type="checkbox" id="select" name="select"><br><br>
-        <button type="submit">Змінити дані робітника</button>
+        <button type="submit">Знайти дані робітника</button>
         <button id="button1" class="myButton">Назад</button>
     </form>
     <div id="message"></div>

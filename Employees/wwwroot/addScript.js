@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var education = document.getElementById('Education').value; 
         var position = document.getElementById('Position').value; 
         var salary = document.getElementById('Salary').value; 
-        var department_id = document.getElementById('Department_id').value; 
+        var departmentid = document.getElementById('Department_id').value; 
 
         var data = {
             managerId: managerId,
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
             education: education,
             position: position,
             salary: salary,
-            department_id: department_id
+            departmentid: departmentid
         };
 
-        fetch('https://localhost:5001/add', {
+        fetch('https://localhost:5001/employee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
