@@ -3,12 +3,13 @@
 <head>
     <title>Пошук співробітника</title>
     <script src="viewScript.js"></script>
-    <link rel="stylesheet" type="text/css" href="stl.css">
+    <link rel="stylesheet" type="text/css" href="stl2.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<div class="login-container">
+
 <body>
-    
-    <form id="viewForm">
+    <div class="login-container">
+    <form id="viewForm" >
         <input type="text" id="id" name="id" placeholder="Id робітника"><br><br>
         <input type="text" id="ManagerId" name="ManagerId" placeholder="Id керівника"><br><br>
         <input type="text" id="Name" name="Name" placeholder="Прізвище"><br><br>
@@ -23,6 +24,7 @@
         <button id="button1" class="myButton">Назад</button>
     </form>
     <div id="message"></div>
-</div>
+    
+    </div>
 </body>
 </html>

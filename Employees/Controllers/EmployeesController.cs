@@ -99,14 +99,17 @@ namespace Employees.Controllers
                 db.SaveChanges();
                 return Ok();
         }
-
+            
         [HttpGet]
         public IActionResult View([FromQuery] People find,int? id)
         {
             var query = db.Employee.AsQueryable();
 
-            //if (id != null)
-            //    query = query.Where(x => x.Id == id);
+            if (id != null)
+                query = query.Where(x => x.Id == id);
+
+            if (find.DepartmentId != null)
+                query = query.Where(x => x.DepartmentId == find.DepartmentId);
 
             if (find.ManagerId != null)
                 query = query.Where(x => x.ManagerId == find.ManagerId);

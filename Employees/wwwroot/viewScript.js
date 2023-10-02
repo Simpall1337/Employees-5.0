@@ -1,26 +1,29 @@
+ 
 document.addEventListener('DOMContentLoaded', function() {
-    var changeForm = document.getElementById('viewForm');
-    var messageElement = document.getElementById('message');
-    var button1 = document.getElementById('button1');
-
+   
+    let changeForm = document.getElementById('viewForm');
+    let messageElement = document.getElementById('message');
+    let button1 = document.getElementById('button1');
+    let cl = document.getElementById('message');
+       
     button1.addEventListener('click', function() {
         window.location.href = "main.html";
       });
     changeForm.addEventListener('submit', function(event) {
         event.preventDefault(); 
 
-        var managerId = document.getElementById('ManagerId').value || null;
-        var name = document.getElementById('Name').value|| null;
-        var surname = document.getElementById('Surname').value|| null; 
-        var patronymic = document.getElementById('Patronymic').value|| null; 
-        var birthday = document.getElementById('Birthday').value|| null; 
-        var education = document.getElementById('Education').value|| null; 
-        var position = document.getElementById('Position').value|| null; 
-        var salary = document.getElementById('Salary').value|| null; 
-        var departmentid = document.getElementById('Department_id').value|| null; 
-        var id = document.getElementById('id').value|| null;
+        let managerId = document.getElementById('ManagerId').value || null;
+        let name = document.getElementById('Name').value|| null;
+        let surname = document.getElementById('Surname').value|| null; 
+        let patronymic = document.getElementById('Patronymic').value|| null; 
+        let birthday = document.getElementById('Birthday').value|| null; 
+        let education = document.getElementById('Education').value|| null; 
+        let position = document.getElementById('Position').value|| null; 
+        let salary = document.getElementById('Salary').value|| null; 
+        let departmentid = document.getElementById('Department_id').value|| null; 
+        let id = document.getElementById('id').value|| null;
     
-        var queryString = '?';
+        let queryString = '?';
 
         queryString += id !== null ? `id=${id}&` : '';
         queryString += managerId !== null ? `managerId=${managerId}&` : '';
@@ -38,27 +41,46 @@ document.addEventListener('DOMContentLoaded', function() {
             queryString = queryString.slice(0, -1);
         }
 
-       
-        //var queryString = `?id=${id}&managerId=${managerId}&name=${name}&surname=${surname}&patronymic=${patronymic}&birthday=${birthday}&education=${education}&position=${position}&salary=${salary}&departmentid=${departmentid}`;
+       // const messageElement = document.querySelector('.employeeTable');
+      //  console.log(messageElement);
+        // async function getData(){
+        //  const data = await axios.get(`https://localhost:5001/employee${queryString}`)
+         
+        // return data.data;
+        // }
+
         fetch(`https://localhost:5001/employee${queryString}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        .then(function(response) {
-            if (response.ok) {
-                messageElement.textContent = 'Дані успішно знайдені.';
-                messageElement.style.color = 'green';
-            } else {
-                messageElement.textContent = 'Помилка при введені даних.';
-                messageElement.style.color = 'red';
-            }
+        .then(response =>{
+            return response.json();
+        }
+        ).then(data => {
+            const slicedData = data.slice(); 
+           
+            console.log(slicedData);
+            cl.innerHTML =  markup(slicedData);
         })
-        .catch(function(error) {
-            console.log(error);
-            messageElement.textContent = 'Сталася помилка при виконані запиту.';
-            messageElement.style.color = 'red';
-        });
+       //const get = getData();
+       
+       function markup(item){
+        return item.map(element => {
+            return `
+            <div style='border: 1px solid black'>Номер робітника: ${element.id}</div>
+            <div style='border: 1px solid black'>Номер керівника: ${element.managerId}</div>
+            <div style='border: 1px solid black'>Ім'я: ${element.name}</div>
+            <div style='border: 1px solid black'>Прізвище: ${element.surname}</div>
+            <div style='border: 1px solid black'>По-батькові: ${element.patronymic}</div>
+            <div style='border: 1px solid black'>Дата народження: ${element.birthday}</div>
+            <div style='border: 1px solid black'>Освіта: ${element.education}</div>
+            <div style='border: 1px solid black'>Позиція: ${element.position}</div>
+            <div style='border: 1px solid black'>Оклад: ${element.salary}</div>
+            <div style='border: 1px solid black'>Департамент: ${element.departmentId}</div>
+            `
+        }).join(' ')}
+       //markup(get);
     });
 });

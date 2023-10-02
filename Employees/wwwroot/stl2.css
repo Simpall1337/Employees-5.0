@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 120vh;
+    background-color: #bdbdbd;
+}
+#text {
+    text-align: start; 
+    margin-top: 10px; 
+    color: black;
+    font-size: 20px; 
+}  
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 50px;
+    margin: 25px;
+    transition: 0.5s;
+    color: white;
+    font-size: 20px;
+    background-color: #4caf50;
+    border-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+}
+
+#id,
+#select,
+#ManagerId,
+#Name,
+#Surname,
+#Patronymic,
+#Birthday,
+#Education,
+#Position,
+#Salary,
+#Department_id {
+    height: 35px;
+    width: 210px;
+    border-radius: 6px;
+    border-color: #ffffff00;
+}
+
+#message {
+    text-align: start;
+    font-size: 25px;
+    color: black;
+    font-weight: bolder;
+    
+}
+.login-container{
+    display: flex;
+    gap: 25px;
+}
+.stats{
+    display: block;
+    border: 1px solid black;
+}
